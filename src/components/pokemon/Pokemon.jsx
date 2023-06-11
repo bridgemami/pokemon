@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 // import Info from "../info/Info";
 //create the new file and folder above and the snippet is called usefetch
 export default function Pokemon() {
-  const [random, setRandom] = useState(Math.floor(Math.random() * 152));
+  const [random, setRandom] = useState(Math.floor(Math.random() * 500));
   const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/${random}`);
   //destructure the data property and give it a name
   //useFetch(url, {type: "GET"} or array make sure have use useRef in useFetch.js
@@ -39,19 +39,19 @@ export default function Pokemon() {
               }
              </ul>
             </section>
-            {/* <section>
-            <h3>Type of Pokemon:</h3>
+            <section>
+            <h3>Pokemon Games:</h3>
               <ul>
-              {pokemons.types.map((type)=> {
+              {pokemons.game_indices.map((index, i)=> {
                 return (
-                  <div key={type.slot}>
-                    <li>{type.type.name.substring(0,1).toUpperCase()}{type.type.name.substring(1)}</li>
+                  <div key={i}>
+                    <li>{index.version.name.substring(0,1).toUpperCase()}{index.version.name.substring(1)}</li>
                   </div>
                 )
                 })
               }
              </ul>
-            </section> */}
+            </section>
             </section>
           )
         }
