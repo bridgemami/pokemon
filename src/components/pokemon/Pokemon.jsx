@@ -9,7 +9,6 @@ export default function Pokemon() {
   //useFetch(url, {type: "GET"} or array make sure have use useRef in useFetch.js
   const { data: pokemons, isPending, error } = useFetch(url);
 
-  console.log(pokemons);
 //   console.log(`Name is ${pokemons.name}`);
 
 
@@ -23,13 +22,37 @@ export default function Pokemon() {
       {pokemons &&
            (
             <section key={pokemons.id}>
-              <h2>{pokemons.name.substring(0,1).toUpperCase()}{pokemons.name.substring(1)}</h2>
+              <section>
+              <h2>{pokemons.id}. {pokemons.name.substring(0,1).toUpperCase()}{pokemons.name.substring(1)}</h2>
               <img src={pokemons.sprites.front_default} alt={pokemons.name} />
-              {/* <p>Type(s):{pokemons.types.map((type)=>{type.map((ty=> {return (
-                <span key={ty.slot}>{ty.name}</span>
-              )}))})}</p> */}
+              </section>
+              <section>
+              <h3>Type of Pokemon:</h3>
+              <ul>
+              {pokemons.types.map((type)=> {
+                return (
+                  <div key={type.slot}>
+                    <li>{type.type.name.substring(0,1).toUpperCase()}{type.type.name.substring(1)}</li>
+                  </div>
+                )
+                })
+              }
+             </ul>
             </section>
-            // pokemons.types[0].type.name
+            {/* <section>
+            <h3>Type of Pokemon:</h3>
+              <ul>
+              {pokemons.types.map((type)=> {
+                return (
+                  <div key={type.slot}>
+                    <li>{type.type.name.substring(0,1).toUpperCase()}{type.type.name.substring(1)}</li>
+                  </div>
+                )
+                })
+              }
+             </ul>
+            </section> */}
+            </section>
           )
         }
     </article>
