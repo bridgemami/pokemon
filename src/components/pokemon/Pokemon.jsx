@@ -1,5 +1,9 @@
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
+import Name from "./Name";
+import Image from "./Image";
+import Types from "./Types";
+import Game from "./Game";
 // import Info from "../info/Info";
 //create the new file and folder above and the snippet is called usefetch
 export default function Pokemon() {
@@ -9,9 +13,7 @@ export default function Pokemon() {
   //useFetch(url, {type: "GET"} or array make sure have use useRef in useFetch.js
   const { data: pokemons, isPending, error } = useFetch(url);
 
-//   console.log(`Name is ${pokemons.name}`);
-
-
+  //   console.log(`Name is ${pokemons.name}`);
   return (
     <article>
       {/* for the error is true */}
@@ -19,42 +21,16 @@ export default function Pokemon() {
       {/* for the isPending is true. You need the && */}
       {isPending && <p>Loading data...</p>}
       {/* the && is used if only we have a value */}
-      {pokemons &&
-           (
-            <section key={pokemons.id}>
-              <section>
-              <h2>{pokemons.id}. {pokemons.name.substring(0,1).toUpperCase()}{pokemons.name.substring(1)}</h2>
-              <img src={pokemons.sprites.front_default} alt={pokemons.name} />
-              </section>
-              <section>
-              <h3>Type of Pokemon:</h3>
-              <ul>
-              {pokemons.types.map((type)=> {
-                return (
-                  <div key={type.slot}>
-                    <li>{type.type.name.substring(0,1).toUpperCase()}{type.type.name.substring(1)}</li>
-                  </div>
-                )
-                })
-              }
-             </ul>
-            </section>
-            <section>
-            <h3>Pokemon Games:</h3>
-              <ul>
-              {pokemons.game_indices.map((index, i)=> {
-                return (
-                  <div key={i}>
-                    <li>{index.version.name.substring(0,1).toUpperCase()}{index.version.name.substring(1)}</li>
-                  </div>
-                )
-                })
-              }
-             </ul>
-            </section>
-            </section>
-          )
-        }
+      {pokemons && (
+        <section key={pokemons.id}>
+          <section>
+            <Name id={pokemons.id} name={pokemons.name} />
+            <Image src={pokemons.sprites.front_default} alt={pokemons.name} />
+          </section>
+          <Types types={pokemons.types} />
+          <Game game={pokemons.game_indices} />
+        </section>
+      )}
     </article>
   );
 }
