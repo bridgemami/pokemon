@@ -1,9 +1,10 @@
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import Name from "./Name";
-import Image from "./Image";
-import Types from "./Types";
-import Game from "./Game";
+import Name from "./name/Name";
+import Image from "./image/Image";
+import Types from "./Types/Types";
+import Game from "./game/Game";
+import SearchBar from "./search_bar/SearchBar";
 // import Info from "../info/Info";
 //create the new file and folder above and the snippet is called usefetch
 export default function Pokemon() {
@@ -15,6 +16,8 @@ export default function Pokemon() {
 
   //   console.log(`Name is ${pokemons.name}`);
   return (
+    <>
+    <SearchBar />
     <article>
       {/* for the error is true */}
       {error && <p>The error is {error}</p>}
@@ -32,5 +35,6 @@ export default function Pokemon() {
         </section>
       )}
     </article>
+    </>
   );
 }
